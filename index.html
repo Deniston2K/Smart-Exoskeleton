@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+    <style>
+.rectangle{
+padding-top: 25px;
+  width:1260px;
+  height:80px;
+  border:1px solid #000;
+  position: relative;
+  text-align: center;
+
+}
+</style>
+    <img src="KCT logo.jpeg" width="60" height="60">
+<h1><div class="rectangle">KUMARAGURU COLLEGE OF TECHNOLOGY</div></h1>
+    <!--This is the header tab for the website-->
+ <title>Smart Exoskeleton 1</title>
+    <style>
+img {
+  float: left;
+  margin: 8px 20px 15px 20px;
+}
+</style>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.header {
+  text-align: center;
+  padding: 32px;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.column img {
+  margin-top: 12px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #000000;
+  text-align: middle;
+  padding: 15px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FFFFFF;
+  font-family: Helvetica, sans-serif;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: #FF9F55;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid #FF9F55;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+.left {
+  left: 0;
+}
+
+/* Place the container to the right */
+.right {
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.content {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  /* Place the timelime to the left */
+  .timeline::after {
+  left: 31px;
+  }
+
+  /* Full-width containers */
+  .container {
+  width: 100%;
+  padding-left: 70px;
+  padding-right: 25px;
+  }
+
+  /* Make sure that all arrows are pointing leftwards */
+  .container::before {
+  left: 60px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+  left: 15px;
+  }
+
+  /* Make all right containers behave like the left ones */
+  .right {
+  left: 0%;
+  }
+}
+</style>
+    	<script type="text/javascript">
+	window.onload = function () {
+
+      var dps = [{x: 1, y: 10}, {x: 2, y: 13}, {x: 3, y: 18}, {x: 4, y: 20}, {x: 5, y: 17},{x: 6, y: 10}, {x: 7, y: 13}, {x: 8, y: 18}, {x: 9, y: 20}, {x: 10, y: 17}];   //dataPoints.
+
+      var chart = new CanvasJS.Chart("chartContainer",{
+      	title :{
+      		text: "Live Data"
+      	},
+      	axisX: {
+      		title: "Axis X Title"
+      	},
+      	axisY: {
+      		title: "Units"
+      	},
+      	data: [{
+      		type: "line",
+      		dataPoints : dps
+      	}]
+      });
+
+      chart.render();
+      var xVal = dps.length + 1;
+      var yVal = 15;
+      var updateInterval = 1000;
+
+      var updateChart = function () {
+
+
+      	yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+      	dps.push({x: xVal,y: yVal});
+
+      	xVal++;
+      	if (dps.length >  10 )
+      	{
+      		dps.shift();
+      	}
+
+      	chart.render();
+
+	// update chart after specified time.
+
+};
+
+setInterval(function(){updateChart()}, updateInterval);
+}
+</script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+
+<center><h1>SMART EXOSKELETON</h1></center>
+<div id="myDiv1"><h2>OUR TEAM</h2>
+    <img src="Deniston.webp"
+         title="Denisotn.A (18BMC055)
+Mechatronics - KCT" width="200" height="200">
+    <img src="Kowshik.jpeg"title="Kowshik Jawahar (18BMC014)
+Mechatronics - KCT" width="200" height="200">
+    <img src="Praveen.jpeg" title="Praveen Kumar (18BMC006)
+Mechatronics - KCT" width="200" height="200">
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div id="myDiv2"><h2>ABOUT OUR PROJECT</h2></div>
+<div id="myDiv3"><p><img src="exoskeleton.jpeg" width="240" height="300">
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</p>
+</div>
+<div id="myDiv">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="myDiv15"><h1>Our Project Road Map</h1></div>
+<div class="timeline">
+  <div class="container left">
+    <div class="content">
+      <h2>2017</h2>
+      <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>2016</h2>
+      <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>2015</h2>
+      <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>2012</h2>
+      <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+    </div>
+  </div>
+</div>
+
+<div id="myDiv4"><h2>OUR SOLUTION</h2></div>
+<div class="row">
+  <div class="column">
+  <img src="Kowshik.jpeg" style="width:95%">
+  <img src="Deniston.webp" style="width:95%">
+  </div>
+  <div class="column">
+  <img src="Deniston.webp" style="width:95%">
+  <img src="Kowshik.jpeg" style="width:95%">
+  </div>
+
+  </div>
+</div>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!--Adding table to the webpage-->
+<div id="myDiv14"><h2>Component List</h2>
+    <table style=" margin-top:10px; margin-left:250px;margin-right:10px; width:50%">
+      <tr>
+        <th style="width:10%">#</th>
+        <th style="width:60%">COMPONENTS</th>
+        <th style="width:30%">QUANTITY</th>
+      </tr>
+      <tr>
+        <td>Alfreds Futterkiste</td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+      </tr>
+      <tr>
+        <td>Centro comercial Moctezuma</td>
+        <td>Francisco Chang</td>
+        <td>Mexico</td>
+      </tr>
+      <tr>
+        <td>Ernst Handel</td>
+        <td>Roland Mendel</td>
+        <td>Austria</td>
+      </tr>
+      <tr>
+        <td>Island Trading</td>
+        <td>Helen Bennett</td>
+        <td>UK</td>
+      </tr>
+      <tr>
+        <td>Laughing Bacchus Winecellars</td>
+        <td>Yoshi Tannamuri</td>
+        <td>Canada</td>
+      </tr>
+      <tr>
+        <td>Magazzini Alimentari Riuniti</td>
+        <td>Giovanni Rovelli</td>
+        <td>Italy</td>
+      </tr>
+    </table>
+</div>
+<!------------------------------------------------------------------------------------------------------------------->
+<div id="myDiv5"><center><h1>To understand the robot working we must know about gait motion</h1></center></div>
+<div id="myDiv6"><video width="1200" center controls>
+  <source src="Gait motion video.mp4" type="video/mp4">
+  Your browser does not support HTML video.
+</video></div>
+<!------------------------------------------------------------------------------------------------------------------->
+<!--NEED TO ADD 6 GRAPHS IN THIS PART-->
+<div id="myDiv7"><h2>GRAPH</h2> ----> NEED TO ADD CONTENT HERE <----</div>
+	<div id="chartContainer" style="height: 300px; width: 100%;">
+	</div>
+<!------------------------------------------------------------------------------------------------------------------->
+</body>
+<!--M1 Motor-->
+<div id="myDiv8"><h3>MOTOR M1</h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</div>
+<!--M2 Motor-->
+<div id="myDiv9"><h3>MOTOR M2</h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</div>
+<!--M3 Motor-->
+<div id="myDiv10"><h3>MOTOR M3</h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</div>
+<!--M4 Motor-->
+<div id="myDiv11"><h3>MOTOR M4</h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</div>
+<!--M5 Motor-->
+<div id="myDiv12"><h3>MOTOR M5</h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</div>
+<!--M6 Motor-->
+<div id="myDiv13"><h3>MOTOR M6</h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</div>
+
+</body>
+<script>
+  document.getElementById("myDiv1").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv2").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv3").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv4").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv5").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv6").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv7").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv8").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv9").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv10").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv11").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv12").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv13").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv14").style.margin = "50px 50px 50px 50px";
+  document.getElementById("myDiv15").style.margin = "50px 50px 50px 50px";
+</script>
+<!--document.getElementById("myDiv6").style.margin = "0px(TOP) 0px 100px(down space) 800px(left)";-->
+</html>
